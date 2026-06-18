@@ -29,7 +29,7 @@ import { PurchaseSuggestion } from '../modules/purchase-suggestion/entities/purc
           MaintenanceRecord,
           PurchaseSuggestion,
         ],
-        synchronize: true,
+        synchronize: false,
         logging: false,
         charset: 'utf8mb4',
         timezone: '+08:00',

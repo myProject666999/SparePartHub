@@ -58,22 +58,22 @@ const MOVEMENT_TYPE_MAP: Record<string, { label: string; color: string }> = {
             <nz-input-group nzSearch [nzAddOnAfter]="searchIcon" style="width: 260px;">
               <input type="text" nz-input placeholder="搜索编码/名称/规格" [(ngModel)]="queryParams.keyword" (keyup.enter)="loadData()" />
               <ng-template #searchIcon>
-                <button nz-button nzType="primary" nzSearch (click)="loadData()"><i nz-icon nzType="search-outline"></i></button>
+                <button nz-button nzType="primary" nzSearch (click)="loadData()"><i nz-icon nzType="search" nzTheme="outline"></i></button>
               </ng-template>
             </nz-input-group>
             <label nz-checkbox [(ngModel)]="queryParams.onlyLowStock" (ngModelChange)="loadData()">仅低于安全库存</label>
             <label nz-checkbox [(ngModel)]="queryParams.onlyHot" (ngModelChange)="loadData()">仅常用备件</label>
-            <button nz-button (click)="resetQuery()"><i nz-icon nzType="reload-outline"></i> 重置</button>
+            <button nz-button (click)="resetQuery()"><i nz-icon nzType="reload" nzTheme="outline"></i> 重置</button>
           </div>
           <div class="toolbar-right">
             <button nz-button (click)="router.navigate(['/inventory/stock-in'])">
-              <i nz-icon nzType="arrow-up-outline" style="color: #52c41a;"></i> 采购入库
+              <i nz-icon nzType="arrow-up" nzTheme="outline" style="color: #52c41a;"></i> 采购入库
             </button>
             <button nz-button nzType="primary" (click)="router.navigate(['/inventory/stock-out'])">
-              <i nz-icon nzType="arrow-down-outline"></i> 维修领料
+              <i nz-icon nzType="arrow-down" nzTheme="outline"></i> 维修领料
             </button>
             <button nz-button nzType="dashed" (click)="router.navigate(['/inventory/scan-out'])">
-              <i nz-icon nzType="scan-outline"></i> 扫码出库
+              <i nz-icon nzType="scan" nzTheme="outline"></i> 扫码出库
             </button>
           </div>
         </div>
@@ -179,7 +179,7 @@ export class InventoryListComponent implements OnInit {
   template: `
     <div class="page-container">
       <div class="page-header">
-        <button nz-button (click)="router.navigate(['/inventory'])"><i nz-icon nzType="arrow-left-outline"></i> 返回</button>
+        <button nz-button (click)="router.navigate(['/inventory'])"><i nz-icon nzType="arrow-left" nzTheme="outline"></i> 返回</button>
         <span style="margin-left: 16px; font-size: 20px; font-weight: 600;">📥 采购入库</span>
       </div>
 
@@ -263,7 +263,7 @@ export class InventoryListComponent implements OnInit {
           <div style="margin-top: 24px; text-align: center;">
             <button nz-button style="width: 120px;" (click)="router.navigate(['/inventory'])">取消</button>
             <button nz-button nzType="primary" style="width: 120px; margin-left: 16px;" [nzLoading]="submitting">
-              <i nz-icon nzType="check-circle-outline"></i> 确认入库
+              <i nz-icon nzType="check-circle" nzTheme="outline"></i> 确认入库
             </button>
           </div>
         </form>
@@ -343,7 +343,7 @@ export class StockInComponent implements OnInit {
   template: `
     <div class="page-container">
       <div class="page-header">
-        <button nz-button (click)="router.navigate(['/inventory'])"><i nz-icon nzType="arrow-left-outline"></i> 返回</button>
+        <button nz-button (click)="router.navigate(['/inventory'])"><i nz-icon nzType="arrow-left" nzTheme="outline"></i> 返回</button>
         <span style="margin-left: 16px; font-size: 20px; font-weight: 600;">📤 维修领料出库</span>
       </div>
 
@@ -434,7 +434,7 @@ export class StockInComponent implements OnInit {
           <div style="margin-top: 24px; text-align: center;">
             <button nz-button style="width: 120px;" (click)="router.navigate(['/inventory'])">取消</button>
             <button nz-button nzType="primary" style="width: 120px; margin-left: 16px;" [nzLoading]="submitting">
-              <i nz-icon nzType="check-circle-outline"></i> 确认出库
+              <i nz-icon nzType="check-circle" nzTheme="outline"></i> 确认出库
             </button>
           </div>
         </form>
@@ -528,7 +528,7 @@ export class StockOutComponent implements OnInit {
   template: `
     <div class="page-container">
       <div class="page-header">
-        <button nz-button (click)="router.navigate(['/inventory'])"><i nz-icon nzType="arrow-left-outline"></i> 返回</button>
+        <button nz-button (click)="router.navigate(['/inventory'])"><i nz-icon nzType="arrow-left" nzTheme="outline"></i> 返回</button>
         <span style="margin-left: 16px; font-size: 20px; font-weight: 600;">📱 扫码快速出库</span>
         <span style="margin-left: 12px; color: #8c8c8c; font-size: 13px;">适合维修工手持设备扫码快速领件</span>
       </div>
@@ -590,11 +590,11 @@ export class StockOutComponent implements OnInit {
 
           <div style="margin-top: 32px; text-align: center;">
             <button nz-button style="width: 160px; height: 48px;" type="button" (click)="form.reset()">
-              <i nz-icon nzType="redo-outline"></i> 清空重扫
+              <i nz-icon nzType="redo" nzTheme="outline"></i> 清空重扫
             </button>
             <button nz-button nzType="primary" style="width: 200px; height: 48px; margin-left: 16px; font-size: 16px;"
               type="submit" [nzLoading]="submitting">
-              <i nz-icon nzType="scan-outline"></i> 扫码确认出库
+              <i nz-icon nzType="scan" nzTheme="outline"></i> 扫码确认出库
             </button>
           </div>
         </form>

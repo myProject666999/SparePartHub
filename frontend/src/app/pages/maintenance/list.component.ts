@@ -38,14 +38,14 @@ const STATUS_MAP: Record<string, { label: string; color: string }> = {
             <nz-input-group nzSearch [nzAddOnAfter]="searchIcon" style="width: 220px;">
               <input type="text" nz-input placeholder="搜索单号/设备" [(ngModel)]="queryParams.keyword" (keyup.enter)="loadData()" />
               <ng-template #searchIcon>
-                <button nz-button nzType="primary" nzSearch (click)="loadData()"><i nz-icon nzType="search-outline"></i></button>
+                <button nz-button nzType="primary" nzSearch (click)="loadData()"><i nz-icon nzType="search" nzTheme="outline"></i></button>
               </ng-template>
             </nz-input-group>
-            <button nz-button (click)="resetQuery()"><i nz-icon nzType="reload-outline"></i> 重置</button>
+            <button nz-button (click)="resetQuery()"><i nz-icon nzType="reload" nzTheme="outline"></i> 重置</button>
           </div>
           <div class="toolbar-right">
             <button nz-button nzType="primary" (click)="router.navigate(['/maintenance/new'])">
-              <i nz-icon nzType="plus-outline"></i> 新建维修记录
+              <i nz-icon nzType="plus" nzTheme="outline"></i> 新建维修记录
             </button>
           </div>
         </div>
@@ -162,7 +162,7 @@ export class MaintenanceListComponent implements OnInit {
   template: `
     <div class="page-container">
       <div class="page-header">
-        <button nz-button (click)="router.navigate(['/maintenance'])"><i nz-icon nzType="arrow-left-outline"></i> 返回</button>
+        <button nz-button (click)="router.navigate(['/maintenance'])"><i nz-icon nzType="arrow-left" nzTheme="outline"></i> 返回</button>
         <span style="margin-left: 16px; font-size: 20px; font-weight: 600;">{{ isEdit ? '编辑维修记录' : '新建维修记录' }}</span>
       </div>
 
@@ -267,7 +267,7 @@ export class MaintenanceListComponent implements OnInit {
           <div style="margin-top: 24px; text-align: center;">
             <button nz-button style="width: 120px;" (click)="router.navigate(['/maintenance'])">取消</button>
             <button nz-button nzType="primary" style="width: 120px; margin-left: 16px;" [nzLoading]="submitting">
-              <i nz-icon nzType="save-outline"></i> 保存
+              <i nz-icon nzType="save" nzTheme="outline"></i> 保存
             </button>
           </div>
         </form>

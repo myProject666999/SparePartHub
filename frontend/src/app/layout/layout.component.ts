@@ -4,6 +4,7 @@ interface MenuItem {
   label: string;
   path: string;
   icon: string;
+  theme?: string;
   children?: MenuItem[];
 }
 
@@ -14,22 +15,22 @@ interface MenuItem {
       <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzWidth]="240">
         <div class="logo">
           <span *ngIf="!isCollapsed">
-            <i nz-icon nzType="container-outline" style="font-size: 24px; color: #fff;"></i>
+            <i nz-icon nzType="container" nzTheme="outline" style="font-size: 24px; color: #fff;"></i>
             <span style="margin-left: 10px; font-size: 18px; font-weight: 600; color: #fff;">备品备件中心</span>
           </span>
-          <i *ngIf="isCollapsed" nz-icon nzType="container-outline" style="font-size: 28px; color: #fff; display: block; text-align: center;"></i>
+          <i *ngIf="isCollapsed" nz-icon nzType="container" nzTheme="outline" style="font-size: 28px; color: #fff; display: block; text-align: center;"></i>
         </div>
         <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed" nzInlineIndent="24">
           <ng-container *ngFor="let menu of menus">
             <li nz-menu-item *ngIf="!menu.children" nzMatchRouter [routerLink]="menu.path">
-              <i nz-icon [nzType]="menu.icon"></i>
+              <i nz-icon [nzType]="menu.icon" [nzTheme]="menu.theme || 'outline'"></i>
               <span>{{ menu.label }}</span>
             </li>
             <li nz-submenu *ngIf="menu.children" nzTitle="{{ menu.label }}">
-              <span title><i nz-icon [nzType]="menu.icon"></i><span>{{ menu.label }}</span></span>
+              <span title><i nz-icon [nzType]="menu.icon" [nzTheme]="menu.theme || 'outline'"></i><span>{{ menu.label }}</span></span>
               <ul>
                 <li nz-menu-item *ngFor="let child of menu.children" nzMatchRouter [routerLink]="child.path">
-                  <i nz-icon [nzType]="child.icon"></i>
+                  <i nz-icon [nzType]="child.icon" [nzTheme]="child.theme || 'outline'"></i>
                   <span>{{ child.label }}</span>
                 </li>
               </ul>
@@ -63,10 +64,11 @@ interface MenuItem {
       display: flex;
       align-items: center;
       justify-content: center;
+      padding: 0 16px;
       background: rgba(255, 255, 255, 0.05);
-      margin: 0;
+      margin-bottom: 16px;
     }
-  `],
+  `]
 })
 export class LayoutComponent {
   isCollapsed = false;
@@ -90,31 +92,31 @@ export class LayoutComponent {
   };
 
   menus: MenuItem[] = [
-    { label: '数据看板', path: '/dashboard', icon: 'dashboard-outline' },
+    { label: '数据看板', path: '/dashboard', icon: 'dashboard' },
     {
       label: '基础档案',
       path: '',
-      icon: 'appstore-outline',
+      icon: 'appstore',
       children: [
-        { label: '备件管理', path: '/spare-parts', icon: 'tag-outline' },
-        { label: '设备管理', path: '/equipments', icon: 'tool-outline' },
+        { label: '备件管理', path: '/spare-parts', icon: 'tag' },
+        { label: '设备管理', path: '/equipments', icon: 'tool' },
       ],
     },
     {
       label: '库存管理',
       path: '',
-      icon: 'container-outline',
+      icon: 'container',
       children: [
-        { label: '库存查询', path: '/inventory', icon: 'search-outline' },
-        { label: '采购入库', path: '/inventory/stock-in', icon: 'arrow-up-outline' },
-        { label: '维修领料', path: '/inventory/stock-out', icon: 'arrow-down-outline' },
-        { label: '扫码出库', path: '/inventory/scan-out', icon: 'scan-outline' },
+        { label: '库存查询', path: '/inventory', icon: 'search' },
+        { label: '采购入库', path: '/inventory/stock-in', icon: 'arrow-up' },
+        { label: '维修领料', path: '/inventory/stock-out', icon: 'arrow-down' },
+        { label: '扫码出库', path: '/inventory/scan-out', icon: 'scan' },
       ],
     },
-    { label: '出入库流水', path: '/stock-movements', icon: 'reconciliation-outline' },
-    { label: '请购建议', path: '/purchase-suggestions', icon: 'shopping-outline' },
-    { label: '维修记录', path: '/maintenance', icon: 'safety-certificate-outline' },
-    { label: '统计分析', path: '/statistics', icon: 'bar-chart-outline' },
+    { label: '出入库流水', path: '/stock-movements', icon: 'reconciliation' },
+    { label: '请购建议', path: '/purchase-suggestions', icon: 'shopping' },
+    { label: '维修记录', path: '/maintenance', icon: 'safety-certificate' },
+    { label: '统计分析', path: '/statistics', icon: 'bar-chart' },
   ];
 
   get currentTitle(): string {

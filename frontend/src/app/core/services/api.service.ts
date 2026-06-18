@@ -20,25 +20,31 @@ export interface PaginatedResponse<T = any> {
 
 @Injectable({ providedIn: 'root' })
 export class ApiService {
+  private readonly baseUrl = '/api';
+
   constructor(private http: HttpClient) {}
 
   private extractData<T>(res: ApiResponse<T>): T {
     return res.data as T;
   }
 
+  private fullUrl(url: string): string {
+    return url.startsWith('/') ? `${this.baseUrl}${url}` : `${this.baseUrl}/${url}`;
+  }
+
   get<T>(url: string, params?: any): Observable<T> {
-    return this.http.get<ApiResponse<T>>(url, { params }).pipe(map(this.extractData));
+    return this.http.get<ApiResponse<T>>(this.fullUrl(url), { params }).pipe(map(this.extractData));
   }
 
   post<T>(url: string, body?: any): Observable<T> {
-    return this.http.post<ApiResponse<T>>(url, body).pipe(map(this.extractData));
+    return this.http.post<ApiResponse<T>>(this.fullUrl(url), body).pipe(map(this.extractData));
   }
 
   put<T>(url: string, body?: any): Observable<T> {
-    return this.http.put<ApiResponse<T>>(url, body).pipe(map(this.extractData));
+    return this.http.put<ApiResponse<T>>(this.fullUrl(url), body).pipe(map(this.extractData));
   }
 
   delete<T>(url: string): Observable<T> {
-    return this.http.delete<ApiResponse<T>>(url).pipe(map(this.extractData));
+    return this.http.delete<ApiResponse<T>>(this.fullUrl(url)).pipe(map(this.extractData));
   }
 }

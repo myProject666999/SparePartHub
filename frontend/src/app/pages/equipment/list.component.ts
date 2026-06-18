@@ -27,7 +27,7 @@ const STATUS_MAP: Record<string, { label: string; color: string }> = {
             <nz-input-group nzSearch [nzAddOnAfter]="searchIcon" style="width: 260px;">
               <input type="text" nz-input placeholder="搜索编号/名称/型号" [(ngModel)]="queryParams.keyword" (keyup.enter)="loadData()" />
               <ng-template #searchIcon>
-                <button nz-button nzType="primary" nzSearch (click)="loadData()"><i nz-icon nzType="search-outline"></i></button>
+                <button nz-button nzType="primary" nzSearch (click)="loadData()"><i nz-icon nzType="search" nzTheme="outline"></i></button>
               </ng-template>
             </nz-input-group>
             <nz-select style="width: 140px;" [(ngModel)]="queryParams.workshop" nzPlaceHolder="选择车间" nzAllowClear (ngModelChange)="loadData()">
@@ -39,11 +39,11 @@ const STATUS_MAP: Record<string, { label: string; color: string }> = {
             <nz-select style="width: 140px;" [(ngModel)]="queryParams.status" nzPlaceHolder="选择状态" nzAllowClear (ngModelChange)="loadData()">
               <nz-option *ngFor="let s of statusOptions" [nzValue]="s.value" [nzLabel]="s.label"></nz-option>
             </nz-select>
-            <button nz-button (click)="resetQuery()"><i nz-icon nzType="reload-outline"></i> 重置</button>
+            <button nz-button (click)="resetQuery()"><i nz-icon nzType="reload" nzTheme="outline"></i> 重置</button>
           </div>
           <div class="toolbar-right">
             <button nz-button nzType="primary" (click)="router.navigate(['/equipments/new'])">
-              <i nz-icon nzType="plus-outline"></i> 创建设备
+              <i nz-icon nzType="plus" nzTheme="outline"></i> 创建设备
             </button>
           </div>
         </div>
@@ -128,7 +128,7 @@ export class EquipmentListComponent implements OnInit {
   template: `
     <div class="page-container">
       <div class="page-header">
-        <button nz-button (click)="router.navigate(['/equipments'])"><i nz-icon nzType="arrow-left-outline"></i> 返回</button>
+        <button nz-button (click)="router.navigate(['/equipments'])"><i nz-icon nzType="arrow-left" nzTheme="outline"></i> 返回</button>
         <span style="margin-left: 16px; font-size: 20px; font-weight: 600;">{{ isEdit ? '编辑设备' : '创建设备' }}</span>
       </div>
 
@@ -226,7 +226,7 @@ export class EquipmentListComponent implements OnInit {
           <div style="margin-top: 24px; text-align: center;">
             <button nz-button style="width: 120px;" (click)="router.navigate(['/equipments'])">取消</button>
             <button nz-button nzType="primary" style="width: 120px; margin-left: 16px;" [nzLoading]="submitting">
-              <i nz-icon nzType="save-outline"></i> 保存
+              <i nz-icon nzType="save" nzTheme="outline"></i> 保存
             </button>
           </div>
         </form>

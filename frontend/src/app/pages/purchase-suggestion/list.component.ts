@@ -58,13 +58,13 @@ const STATUS_MAP: Record<string, { label: string; color: string }> = {
             <nz-input-group nzSearch [nzAddOnAfter]="searchIcon" style="width: 220px;">
               <input type="text" nz-input placeholder="搜索单号/备件" [(ngModel)]="queryParams.keyword" (keyup.enter)="loadData()" />
               <ng-template #searchIcon>
-                <button nz-button nzType="primary" nzSearch (click)="loadData()"><i nz-icon nzType="search-outline"></i></button>
+                <button nz-button nzType="primary" nzSearch (click)="loadData()"><i nz-icon nzType="search" nzTheme="outline"></i></button>
               </ng-template>
             </nz-input-group>
           </div>
           <div class="toolbar-right">
             <button nz-button nzType="primary" (click)="generateSuggestions()" [nzLoading]="generating">
-              <i nz-icon nzType="thunderbolt-outline"></i> 自动生成请购单
+              <i nz-icon nzType="thunderbolt" nzTheme="outline"></i> 自动生成请购单
             </button>
           </div>
         </div>

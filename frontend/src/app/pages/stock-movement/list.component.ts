@@ -54,10 +54,10 @@ const STATUS_MAP: Record<string, { label: string; color: string }> = {
             <nz-input-group nzSearch [nzAddOnAfter]="searchIcon" style="width: 220px;">
               <input type="text" nz-input placeholder="搜索单号/备件" [(ngModel)]="queryParams.keyword" (keyup.enter)="loadData()" />
               <ng-template #searchIcon>
-                <button nz-button nzType="primary" nzSearch (click)="loadData()"><i nz-icon nzType="search-outline"></i></button>
+                <button nz-button nzType="primary" nzSearch (click)="loadData()"><i nz-icon nzType="search" nzTheme="outline"></i></button>
               </ng-template>
             </nz-input-group>
-            <button nz-button (click)="resetQuery()"><i nz-icon nzType="reload-outline"></i> 重置</button>
+            <button nz-button (click)="resetQuery()"><i nz-icon nzType="reload" nzTheme="outline"></i> 重置</button>
           </div>
         </div>
 
