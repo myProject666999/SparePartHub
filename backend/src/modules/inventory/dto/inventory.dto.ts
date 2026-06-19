@@ -1,5 +1,6 @@
-import { IsOptional, IsString, IsNumber, Min, IsBoolean } from 'class-validator';
+import { IsOptional, IsString, IsNumber, Min, IsBoolean, IsInt } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { Type } from 'class-transformer';
 import { PaginationQueryDto } from '../../../common/dto/response.dto';
 
 export class StockInDto {
@@ -8,6 +9,7 @@ export class StockInDto {
   sparePartId: string;
 
   @ApiProperty({ description: '入库数量' })
+  @Type(() => Number)
   @IsNumber()
   @Min(1)
   quantity: number;
@@ -28,6 +30,7 @@ export class StockInDto {
   operator?: string;
 
   @ApiPropertyOptional({ description: '单价' })
+  @Type(() => Number)
   @IsNumber()
   @IsOptional()
   unitPrice?: number;
@@ -44,6 +47,7 @@ export class StockOutDto {
   sparePartId: string;
 
   @ApiProperty({ description: '出库数量' })
+  @Type(() => Number)
   @IsNumber()
   @Min(1)
   quantity: number;
@@ -79,6 +83,7 @@ export class ScanStockOutDto {
   barcode: string;
 
   @ApiProperty({ description: '出库数量' })
+  @Type(() => Number)
   @IsNumber()
   @Min(1)
   quantity: number;
@@ -109,6 +114,7 @@ export class StockAdjustDto {
   sparePartId: string;
 
   @ApiProperty({ description: '调整后实际库存' })
+  @Type(() => Number)
   @IsNumber()
   @Min(0)
   actualStock: number;
@@ -126,11 +132,13 @@ export class StockAdjustDto {
 
 export class QueryInventoryDto extends PaginationQueryDto {
   @ApiPropertyOptional({ description: '是否只查低于安全库存' })
+  @Type(() => Boolean)
   @IsBoolean()
   @IsOptional()
   onlyLowStock?: boolean;
 
   @ApiPropertyOptional({ description: '是否只查常用备件' })
+  @Type(() => Boolean)
   @IsBoolean()
   @IsOptional()
   onlyHot?: boolean;

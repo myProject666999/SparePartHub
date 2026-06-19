@@ -76,7 +76,8 @@
               "buildTarget": "spare-part-hub:build:production"
             },
             "development": {
-              "buildTarget": "spare-part-hub:build:development"
+              "buildTarget": "spare-part-hub:build:development",
+              "proxyConfig": "proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

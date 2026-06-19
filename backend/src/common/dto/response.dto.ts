@@ -1,4 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { IsOptional, IsString, IsInt, Min } from 'class-validator';
+import { Type } from 'class-transformer';
 
 export class ApiResponse<T> {
   @ApiProperty({ description: '是否成功' })
@@ -55,7 +57,22 @@ export class PaginatedResponse<T> {
 }
 
 export class PaginationQueryDto {
+  @ApiPropertyOptional({ description: '页码，默认1', example: 1 })
+  @IsOptional()
+  @Type(() => Number)
+  @IsInt()
+  @Min(1)
   page?: number = 1;
+
+  @ApiPropertyOptional({ description: '每页数量，默认20', example: 20 })
+  @IsOptional()
+  @Type(() => Number)
+  @IsInt()
+  @Min(1)
   pageSize?: number = 20;
+
+  @ApiPropertyOptional({ description: '搜索关键词', example: '' })
+  @IsOptional()
+  @IsString()
   keyword?: string = '';
 }

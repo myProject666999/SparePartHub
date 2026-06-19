@@ -135,7 +135,7 @@ export class SparePartService {
     const queryBuilder = this.sparePartRepository
       .createQueryBuilder('sp')
       .leftJoin(Inventory, 'inv', 'inv.sparePartId = sp.id')
-      .addSelect(['inv.currentStock', 'inv.safetyStock', 'inv.lastInboundAt', 'inv.lastOutboundAt']);
+      .addSelect(['inv.currentStock', 'inv.lastInboundAt', 'inv.lastOutboundAt']);
 
     if (keyword) {
       queryBuilder.andWhere('(sp.name LIKE :keyword OR sp.code LIKE :keyword OR sp.specification LIKE :keyword)', {
@@ -170,7 +170,7 @@ export class SparePartService {
     const items = entities.map((entity: any) => ({
       ...entity,
       currentStock: entity.inventory?.currentStock ?? 0,
-      safetyStock: entity.inventory?.safetyStock ?? 0,
+      safetyStock: entity.safetyStock ?? 0,
     }));
 
     return ApiResponse.success({
