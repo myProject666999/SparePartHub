@@ -295,9 +295,13 @@ export class EquipmentFormComponent implements OnInit {
       return;
     }
     this.submitting = true;
+    const data = { ...this.form.value };
+    if (!data.commissionDate) {
+      delete data.commissionDate;
+    }
     const request = this.isEdit
-      ? this.equipmentService.update(this.id, this.form.value)
-      : this.equipmentService.create(this.form.value);
+      ? this.equipmentService.update(this.id, data)
+      : this.equipmentService.create(data);
 
     request.subscribe({
       next: () => {

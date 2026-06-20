@@ -178,7 +178,7 @@ export class SparePartListComponent implements OnInit {
             <nz-descriptions-item nzTitle="品牌">${detail.brand || '-'}</nz-descriptions-item>
             <nz-descriptions-item nzTitle="存放货位">${detail.storageLocation || '-'}</nz-descriptions-item>
             <nz-descriptions-item nzTitle="计量单位">${detail.unit || '件'}</nz-descriptions-item>
-            <nz-descriptions-item nzTitle="单价">¥${(detail.unitPrice || 0).toFixed(2)}</nz-descriptions-item>
+            <nz-descriptions-item nzTitle="单价">¥${Number(detail.unitPrice || 0).toFixed(2)}</nz-descriptions-item>
             <nz-descriptions-item nzTitle="安全库存">${detail.safetyStock || 0}</nz-descriptions-item>
             <nz-descriptions-item nzTitle="生产厂商">${detail.manufacturer || '-'}</nz-descriptions-item>
             <nz-descriptions-item nzTitle="是否常用">${detail.isHot ? '是' : '否'}</nz-descriptions-item>
@@ -186,7 +186,7 @@ export class SparePartListComponent implements OnInit {
               <b style="color: #1890ff; font-size: 16px;">${detail.inventory?.currentStock || 0}</b>
               &nbsp;&nbsp;入库: ${detail.inventory?.totalInbound || 0}
               &nbsp;&nbsp;出库: ${detail.inventory?.totalOutbound || 0}
-              &nbsp;&nbsp;金额: ¥${(detail.inventory?.inventoryValue || 0).toFixed(2)}
+              &nbsp;&nbsp;金额: ¥${Number(detail.inventory?.inventoryValue || 0).toFixed(2)}
             </nz-descriptions-item>
             <nz-descriptions-item nzTitle="备注" [nzSpan]="2">${detail.remark || '-'}</nz-descriptions-item>
           </nz-descriptions>

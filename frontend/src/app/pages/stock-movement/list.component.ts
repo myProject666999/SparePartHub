@@ -102,7 +102,7 @@ const STATUS_MAP: Record<string, { label: string; color: string }> = {
               </td>
               <td style="text-align: center;">{{ item.stockBefore }}</td>
               <td style="text-align: center;"><b>{{ item.stockAfter }}</b></td>
-              <td style="text-align: right;">¥{{ Math.abs(item.totalAmount || 0) | number : '1.2-2' }}</td>
+              <td style="text-align: right;">¥{{ Math.abs(Number(item.totalAmount || 0)) | number : '1.2-2' }}</td>
               <td style="font-size: 12px;">
                 <div *ngIf="item.relatedOrderNo">{{ item.relatedOrderNo }}</div>
                 <div *ngIf="item.supplierName" style="color: #8c8c8c;">{{ item.supplierName }}</div>
@@ -119,6 +119,7 @@ const STATUS_MAP: Record<string, { label: string; color: string }> = {
 export class StockMovementListComponent implements OnInit {
   MOVEMENT_TYPE_MAP = MOVEMENT_TYPE_MAP;
   STATUS_MAP = STATUS_MAP;
+  Math = Math;
 
   movementTypes = [
     { value: 'inbound', label: '采购入库' },

@@ -32,6 +32,7 @@ export class CreateEquipmentDto {
   location?: string;
 
   @ApiPropertyOptional({ description: '投产日期' })
+  @Transform(({ value }) => (value === '' || value === undefined || value === null) ? undefined : value)
   @IsDateString()
   @IsOptional()
   commissionDate?: string;
@@ -84,6 +85,7 @@ export class UpdateEquipmentDto {
   location?: string;
 
   @ApiPropertyOptional({ description: '投产日期' })
+  @Transform(({ value }) => (value === '' || value === undefined || value === null) ? undefined : value)
   @IsDateString()
   @IsOptional()
   commissionDate?: string;
