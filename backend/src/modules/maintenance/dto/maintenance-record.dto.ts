@@ -1,5 +1,6 @@
 import { IsNotEmpty, IsOptional, IsString, IsEnum, IsNumber, Min } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { Transform } from 'class-transformer';
 import { MaintenanceType, MaintenanceStatus } from '../entities/maintenance-record.entity';
 import { PaginationQueryDto } from '../../../common/dto/response.dto';
 
@@ -104,11 +105,13 @@ export class QueryMaintenanceRecordDto extends PaginationQueryDto {
   equipmentId?: string;
 
   @ApiPropertyOptional({ description: '维修类型', enum: MaintenanceType })
+  @Transform(({ value }) => (value === '' || value === undefined) ? undefined : value)
   @IsEnum(MaintenanceType)
   @IsOptional()
   maintenanceType?: MaintenanceType;
 
   @ApiPropertyOptional({ description: '维修状态', enum: MaintenanceStatus })
+  @Transform(({ value }) => (value === '' || value === undefined) ? undefined : value)
   @IsEnum(MaintenanceStatus)
   @IsOptional()
   status?: MaintenanceStatus;

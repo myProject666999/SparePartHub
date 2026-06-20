@@ -1,5 +1,6 @@
 import { IsNotEmpty, IsOptional, IsString, IsEnum, IsNumber, IsBoolean, Min, MaxLength } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { Type, Transform } from 'class-transformer';
 import { SparePartStatus, SparePartCategory } from '../entities/spare-part.entity';
 import { PaginationQueryDto } from '../../../common/dto/response.dto';
 
@@ -154,16 +155,20 @@ export class UpdateSparePartDto {
 
 export class QuerySparePartDto extends PaginationQueryDto {
   @ApiPropertyOptional({ description: '备件分类', enum: SparePartCategory })
+  @Transform(({ value }) => (value === '' || value === undefined) ? undefined : value)
   @IsEnum(SparePartCategory)
   @IsOptional()
   category?: SparePartCategory;
 
   @ApiPropertyOptional({ description: '状态', enum: SparePartStatus })
+  @Transform(({ value }) => (value === '' || value === undefined) ? undefined : value)
   @IsEnum(SparePartStatus)
   @IsOptional()
   status?: SparePartStatus;
 
   @ApiPropertyOptional({ description: '是否常用备件' })
+  @Transform(({ value }) => (value === '' || value === undefined) ? undefined : value)
+  @Type(() => Boolean)
   @IsBoolean()
   @IsOptional()
   isHot?: boolean;

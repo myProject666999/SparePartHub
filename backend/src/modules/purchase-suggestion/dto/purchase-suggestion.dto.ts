@@ -1,5 +1,6 @@
-import { IsOptional, IsString, IsEnum, IsNumber, Min } from 'class-validator';
+import { IsOptional, IsString, IsEnum, IsNumber, Min, IsBoolean } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { Transform, Type } from 'class-transformer';
 import { PurchaseSuggestionStatus } from '../entities/purchase-suggestion.entity';
 import { PaginationQueryDto } from '../../../common/dto/response.dto';
 
@@ -47,11 +48,16 @@ export class LinkPurchaseOrderDto {
 
 export class QueryPurchaseSuggestionDto extends PaginationQueryDto {
   @ApiPropertyOptional({ description: '请购状态', enum: PurchaseSuggestionStatus })
+  @Transform(({ value }) => (value === '' || value === undefined) ? undefined : value)
   @IsEnum(PurchaseSuggestionStatus)
   @IsOptional()
   status?: PurchaseSuggestionStatus;
 
   @ApiPropertyOptional({ description: '是否紧急' })
+  @Transform(({ value }) => (value === '' || value === undefined) ? undefined : value)
+  @Type(() => Boolean)
+  @IsBoolean()
+  @IsOptional()
   isUrgent?: boolean;
 
   @ApiPropertyOptional({ description: '开始日期 YYYY-MM-DD' })

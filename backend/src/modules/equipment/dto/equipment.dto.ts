@@ -1,5 +1,6 @@
 import { IsNotEmpty, IsOptional, IsString, IsEnum, IsNumber, Min, MaxLength, IsDateString } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { Transform } from 'class-transformer';
 import { EquipmentStatus } from '../entities/equipment.entity';
 import { PaginationQueryDto } from '../../../common/dto/response.dto';
 
@@ -120,6 +121,7 @@ export class QueryEquipmentDto extends PaginationQueryDto {
   workshop?: string;
 
   @ApiPropertyOptional({ description: '设备状态', enum: EquipmentStatus })
+  @Transform(({ value }) => (value === '' || value === undefined) ? undefined : value)
   @IsEnum(EquipmentStatus)
   @IsOptional()
   status?: EquipmentStatus;
